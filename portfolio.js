@@ -42,5 +42,9 @@ let portfolio = [
   {
     "coin": "matic-network",
     "units": 333.9742458
+  },
+  {
+    "coin": "bittorrent-2",
+    "units": 12450
   }
 ];
