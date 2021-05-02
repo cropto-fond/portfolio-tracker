@@ -46,5 +46,9 @@ let portfolio = [
   {
     "coin": "bittorrent-2",
     "units": 12450
+  },
+  {
+    "coin": "origin-protocol",
+    "units": 65.25323344
   }
 ];
