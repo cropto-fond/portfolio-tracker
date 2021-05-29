@@ -26,6 +26,15 @@ const getCoins = async coins => {
       c.value = '$' + value.toFixed(3);
       total += value;
     });
+
+    // edge case for REVU since not yet on CoinGecko
+    let revu_coin = 'revu'
+    let revu_usd = 0.12
+    let revu_units = 1_000
+    let revu_value = revu_usd * revu_units
+    total += revu_value
+    coins.push({coin: revu_coin, units: revu_units, usd: '$'+revu_usd+' (not on market yet)', value: '$'+revu_value})
+
     //add total line
     coins.push({coin: 'Total', units: '', usd: '', value: '$' + total.toFixed(3)});
     return coins;

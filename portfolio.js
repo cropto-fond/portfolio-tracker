@@ -50,5 +50,9 @@ let portfolio = [
   {
     "coin": "origin-protocol",
     "units": 65.25323344
-  }
+  },
+  {
+    "coin": "blank",
+    "units": 175.0226
+  },
 ];
