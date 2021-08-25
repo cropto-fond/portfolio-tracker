@@ -45,7 +45,7 @@ let portfolio = [
   },
   {
     "coin": "bittorrent-2",
-    "units": 12450
+    "units": 12_450
   },
   {
     "coin": "origin-protocol",
@@ -54,5 +54,9 @@ let portfolio = [
   {
     "coin": "blank",
     "units": 175.0226
+  },
+  {
+    "coin": "baby-doge-coin",
+    "units": 75_239_333_126
   },
 ];
