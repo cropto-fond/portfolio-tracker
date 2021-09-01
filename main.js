@@ -9,22 +9,24 @@
 const getCoins = async coins => {
   const CoinGeckoAPI = 'https://api.coingecko.com/api/v3/simple/price';
   try {
-    //get all ids
-    let ids = coins.map(e => e.coin).join(',');
+    let coinIds = coins.map(coin => coin.coinIdInGecko).join(',');
+    
     //get the currency to convert to (can be more than one - just add comma separated list)
     let currency = 'usd';
-    //create the API URL
-    let url = `${CoinGeckoAPI}?ids=${ids}&vs_currencies=${currency}`;
-    //call API and convert the result
+    
+    let url = `${CoinGeckoAPI}?ids=${coinIds}&vs_currencies=${currency}`;
     let response = await (await fetch(url)).json();
+    
     //iterate through the portfolio and calculate the coin value
     let total = 0;
+    let totalInvested = 0;
     coins.forEach(c => {
-      let usd = response[c.coin].usd;
+      let usd = response[c.coinIdInGecko].usd;
       let value = usd * c.units;
-      c.usd = '$' + usd.toFixed(3);
+      c['price(usd)'] = '$' + usd.toFixed(3);
       c.value = '$' + value.toFixed(3);
       total += value;
+      totalInvested += c['invested(EUR)']
     });
 
     // edge case for REVU since not yet on CoinGecko
@@ -32,11 +34,13 @@ const getCoins = async coins => {
     let revu_usd = 0.12
     let revu_units = 1_000
     let revu_value = revu_usd * revu_units
+    let revu_invested = 100
     total += revu_value
-    coins.push({coin: revu_coin, units: revu_units, usd: '$'+revu_usd+' (not on market yet)', value: '$'+revu_value})
+    totalInvested += revu_invested
+    coins.push({coinIdInGecko: revu_coin, units: revu_units, 'invested(EUR)': revu_invested, 'price(usd)': '$'+revu_usd+' (not on market yet)', value: '$'+revu_value})
 
     //add total line
-    coins.push({coin: 'Total', units: '', usd: '', value: '$' + total.toFixed(3)});
+    coins.push({coinIdInGecko: 'Total', units: '', 'invested(EUR)': totalInvested, 'price(usd)': '', value: '$' + total.toFixed(3)});
     return coins;
   }
   catch(err) {
@@ -52,9 +56,10 @@ const getCoins = async coins => {
  */
 const jsonToTable = (json, divResult) => {
   let col = [];
+  col.push('coin');
   for (let i = 0; i < json.length; i++) {
     for (let key in json[i]) {
-      if (col.indexOf(key) === -1) {
+      if (col.indexOf(key) === -1 && key != 'coinIdInGecko') {
         col.push(key);
       }
     }
@@ -72,19 +77,37 @@ const jsonToTable = (json, divResult) => {
     tr = table.insertRow(-1);
     for (let j = 0; j < col.length; j++) {
       let tabCell = tr.insertCell(-1);
-      tabCell.innerHTML = json[i][col[j]];
+      tabCell.innerHTML = json[i][synonyim(col[j])];
     }
   }
   let divContainer = document.getElementById(divResult);
   divContainer.innerHTML = '';
+  //divContainer.appendChild(cash)
   divContainer.appendChild(table);
 };
+
+const getCash = (coins) => {
+  let startEur = 2_600;
+  let invested = coins[coins.length-1]['invested(EUR)']
+  return startEur - invested
+}
+
+const synonyim = (coinTerm) => {
+  if (coinTerm == 'coin') return 'coinIdInGecko';
+  else if (coinTerm == 'coinIdInGecko') return 'coin';
+  else return coinTerm;
+}
 
 const main = async () => {
   //calculate the current portfolio value
   let coins = await getCoins(portfolio);
   //show the result as an HTML table
   jsonToTable(coins, 'portfolio');
+  
+  document.getElementById('remainingToInvest').innerHTML = getCash(coins)  
+
   //show current date
   document.getElementById('date').innerHTML = (new Date()).toLocaleString();
 };
+
+
