@@ -74,4 +74,9 @@ let portfolio = [
     "units": 75_239_333_126,
     "invested(EUR)": 100,
   },
+  {
+    "coinIdInGecko": "solminter",
+    "units": 18_451.08434,
+    "invested(EUR)": 120,
+  },
 ];
