@@ -79,4 +79,9 @@ let portfolio = [
     "units": 18_451.08434,
     "invested(EUR)": 120,
   },
+  {
+    "coinIdInGecko": "gala",
+    "units": 1_488.2991,
+    "invested(EUR)": 120,
+  },
 ];
