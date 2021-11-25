@@ -3,7 +3,7 @@
 <head>
   <meta charset='utf-8'>
   <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-  <title>Cropto Fond</title>
+  <title>Croptofolio</title>
   <meta name='viewport' content='width=device-width, initial-scale=1'>
   <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
   <link rel="icon" href="resources/icon/cropto-fond.ico">
@@ -11,12 +11,19 @@
   <script src='main.js'></script>
 </head>
 <body onload="main()">
-  <div id="portfolio"></div>
-  <div id="footer">
-    Remaining cash: <span id="remainingToInvest"></span> EUR
-    <br/>Last updated: <span id="date"></span>
-    <button onclick="javascript:location.reload()">Refresh Portfolio</button>
-  </div>
+    <div>
+        <p>See the <a href="https://coinmarketcap.com/portfolio-tracker" target="_blank" rel="noopener noreferrer">Croptofolio at CoinMarketCap</a>!!</p>
+        <p>Credentials are [<a
+            href="https://discord.com/channels/820398254071742535/820417098207330314/828699780687069196"
+            target="_blank" rel="noopener noreferrer">here</a>]. With great power comes great responsibility - please do not add new transactions to Croptofolio!!</p>
+            <p><b>DISCLAIMER:</b> REVU token is not listed yet so balance on CoinMarketCap is different!</p>
+    </div>  
+    <div id="portfolio"></div>
+    <div id="footer">
+        Remaining cash: <span id="remainingToInvest"></span> EUR
+        <br/>Last updated: <span id="date"></span>
+        <button onclick="javascript:location.reload()">Refresh Portfolio</button>
+    </div>
 </body>
 </html>
 <script>
