@@ -84,9 +84,14 @@ let portfolio = [
     "units": 1_488.2991,
     "invested(EUR)": 120,
   },
-    {
+  {
     "coinIdInGecko": "invictus",
     "units": 0.291,
+    "invested(EUR)": 120,
+  },
+  {
+    "coinIdInGecko": "thorchain",
+    "units": 17.72266,
     "invested(EUR)": 120,
   },
 ];
