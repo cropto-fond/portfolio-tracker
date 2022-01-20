@@ -94,4 +94,9 @@ let portfolio = [
     "units": 17.72266,
     "invested(EUR)": 120,
   },
+  {
+    "coinIdInGecko": "revuto",
+    "units": 1_000,
+    "invested(EUR)": 100,
+  },
 ];

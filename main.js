@@ -29,16 +29,6 @@ const getCoins = async coins => {
       totalInvested += c['invested(EUR)']
     });
 
-    // edge case for REVU since not yet on CoinGecko
-    let revu_coin = 'revu'
-    let revu_usd = 0.12
-    let revu_units = 1_000
-    let revu_value = revu_usd * revu_units
-    let revu_invested = 100
-    total += revu_value
-    totalInvested += revu_invested
-    coins.push({coinIdInGecko: revu_coin, units: revu_units, 'invested(EUR)': revu_invested, 'price(usd)': '$'+revu_usd+' (not on market yet)', value: '$'+revu_value})
-
     //add total line
     coins.push({coinIdInGecko: 'Total', units: '', 'invested(EUR)': totalInvested, 'price(usd)': '', value: '$' + total.toFixed(3)});
     return coins;
