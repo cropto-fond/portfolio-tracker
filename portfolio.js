@@ -55,7 +55,7 @@ let portfolio = [
     "invested(EUR)": 120,
   },
   {
-    "coinIdInGecko": "bittorrent-2",
+    "coinIdInGecko": "bittorrent",
     "units": 12_450,
     "invested(EUR)": 100,
   },
