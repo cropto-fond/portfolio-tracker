@@ -99,4 +99,9 @@ let portfolio = [
     "units": 1_000,
     "invested(EUR)": 100,
   },
+  {
+    "coinIdInGecko": "orion-protocol",
+    "units": 117.948,
+    "invested(EUR)": 100,
+  },
 ];
