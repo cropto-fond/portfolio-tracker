@@ -104,4 +104,9 @@ let portfolio = [
     "units": 117.948,
     "invested(EUR)": 100,
   },
+  {
+    "coinIdInGecko": "filecoin",
+    "units": 24.7733,
+    "invested(EUR)": 120,
+  },
 ];
