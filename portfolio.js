@@ -50,7 +50,7 @@ let portfolio = [
     "invested(EUR)": 125,
   },
   {
-    "coinIdInGecko": "matic-network",
+    "coinIdInGecko": "polygon-ecosystem-token",
     "units": 333.9742458,
     "invested(EUR)": 120,
   },
