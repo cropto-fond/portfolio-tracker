@@ -21,7 +21,7 @@ const getCoins = async coins => {
     let total = 0;
     let totalInvested = 0;
     coins.forEach(c => {
-      let usd = response[c.coinIdInGecko].usd;
+      let usd = Number(scientificToDecimal(response[c.coinIdInGecko].usd))
       let value = usd * c.units;
       c['price(usd)'] = '$' + usd.toFixed(3);
       c.value = '$' + value.toFixed(3);
@@ -100,4 +100,28 @@ const main = async () => {
   document.getElementById('date').innerHTML = (new Date()).toLocaleString();
 };
 
+function scientificToDecimal(num) {
+  // Convert input to a number (in case it's passed as a string)
+  const n = Number(num);
+  
+  // If it's not a valid number, return NaN
+  if (isNaN(n)) return NaN;
+
+  // Use toString() to detect if it's already a normal number
+  const str = String(num);
+  if (!str.toLowerCase().includes('e')) return str;
+
+  // Use JavaScript's built-in BigInt-like trick with toFixed
+  const parts = n.toExponential().split('e');
+  const exponent = parseInt(parts[1], 10);
+  
+  // For small numbers, increase decimal precision
+  if (exponent < 0) {
+    const decimal = n.toFixed(Math.abs(exponent) + parts[0].replace('.', '').length);
+    return decimal.replace(/\.?0+$/, ''); // remove trailing zeros
+  }
+
+  // For large numbers, remove scientific notation
+  return n.toFixed(0)
+}
 
